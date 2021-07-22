@@ -1,0 +1,155 @@
+#include <iostream.h>
+#include <string.h>
+#include <stdio.h>
+//using namespace std;
+struct Book
+{
+	char book_name[100];
+	char author[50];
+	int price;
+	int no_of_copies;
+};
+struct Book B[5];
+int main()
+{ int choice ;
+	int status2 =-1 ;
+	do
+	{
+		cout <<"\n1. Create Book Details"<<endl;
+		cout <<"\n2. Display All Book Details"<<endl;
+		cout <<"\n3. Search Book as per Book Name"<<endl;
+		cout <<"\n4. Search as Author Name:"<<endl;
+		cout <<"\n5. Sort the Book Details"<<endl;
+		cout <<"\nEnter Your Choice ::";
+		cin >>choice;
+	int i;
+	switch (choice)
+	{
+
+	case 1:
+		cout<<"\nCreate Book Details"<<endl;
+	for(i=0;i<5;i++)
+	{
+		cout<<"\nEnter the details for Book # "<<i+1;
+		cout<<"\nEnter Book Name";
+		fflush(stdin);
+		gets(B[i].book_name);
+		cout<<"\nEnter Author Name";
+		fflush(stdin);
+		gets(B[i].author);
+		cout<<"\nEnter Price";
+		cin>>B[i].price;
+		cout<<"\nEnter No. of Copies";
+		cin>>B[i].no_of_copies;
+	}
+	break;
+	case 2:
+
+	cout<<"\nDisplaying Complete List of Books"<<endl;
+	for(i=0;i<5;i++)
+	{
+		cout<<"\nBook #"<<i+1<<endl;
+		cout<<"\nBook Name - "<<B[i].book_name<<endl;
+		cout<<"\nAuthor - "<<B[i].author<<endl;
+		cout<<"\nPrice - "<<B[i].price<<endl;
+		cout<<"\nNo. of Copies - "<<B[i].no_of_copies<<endl;
+
+
+	}
+	break;
+	case 3:
+
+	int i;
+
+	char bname[50];
+	cout<<"\nEnter the Book Name";
+	fflush(stdin);
+	gets(bname);
+
+	for (i=0;i<5;i++)
+	{
+		if (strcmp(bname, B[i].book_name) == 0)
+		{
+			status2 = 1;
+			break;
+		}
+	}
+
+		if (status2 == 1)
+		{
+			cout<<"\nThere are "<<B[i].no_of_copies<< " copies for book :"<<B[i].book_name<<endl;
+
+		}
+		else
+		{
+			cout<<"\nBook Not Found !! "<<endl;
+
+		}
+
+
+	break;
+	case 4:
+	//Search based on author name
+
+	char aname[50];
+	cout<<"\nEnter the Author Name";
+	fflush(stdin);
+	gets(aname);
+	int status;
+	status =-1;
+	for (i=0;i<5;i++)
+	{
+
+		if (strcmp(aname, B[i].author) == 0)
+		{
+			status = 1;
+			cout<<"\nBook Name - "<<B[i].book_name<< " & No. of Copies -"<<B[i].no_of_copies<<endl;
+
+		}
+		}
+
+		if (status == -1)
+		cout<<"\nAuthor details not found";
+
+	break;
+
+	  // Sorting the book data
+	 case 5:
+	  struct Book temp;
+	  for (i=0;i<5;i++)
+	  {
+		for (int j=0;j<i-1;j++)
+		{
+
+		if (strcmp(B[j].book_name, B[j+1].book_name) > 0)
+		{
+			temp = B[j];
+			B[j] = B[j+1];
+			B[j+1] = temp;
+
+		}
+
+		}
+	  }
+
+		cout<<"\nBooks List (sorted)"<<endl;
+		for (i=0;i<5;i++)
+		 {
+		cout<<"\nBook #"<<i+1<<endl;
+		cout<<"\nBook Name - "<<B[i].book_name<<endl;
+		cout<<"\nAuthor - "<<B[i].author<<endl;
+		cout<<"\nPrice - "<<B[i].price<<endl;
+		cout<<"\nNo. of Copies - "<<B[i].no_of_copies<<endl;
+
+		}
+	  break;
+}
+
+}
+
+while (choice <= 5);
+
+return 0;
+
+
+}
